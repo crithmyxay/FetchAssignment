@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import Query from './components/Query';
-import Zipcode from './components/Zipcode';
-// import Brewery from "./utils/Brewery";
+import Location from './components/Location';
 import Results from './components/Results';
 
 class App extends React.Component {
@@ -13,7 +12,7 @@ class App extends React.Component {
       isLoading: true,
       brewery: null
     };
-  }
+  };
 
   inputChange = (entry) => {
     this.setState({
@@ -26,23 +25,21 @@ class App extends React.Component {
             isLoading: false,
             brewery: json
     });
-    console.log(`please post the results!`);
-  }
+    console.log(this.state.brewery);
+  };
 
   render () {
-    // const { isLoading, id, name, brewery_type, street, city, state, postal_code, country, longtitude, latitude, phone, website_url, updated_at, tag_list} = this.state
-    
     return (
-      <div className="App">
+      <div>
         <div className="App-header">
           <Query></Query>
-          <Zipcode handleChange={this.inputChange} callBack={this.brewChange}></Zipcode>
-          <Results breweryInfo={this.state.brewery}></Results>
+          <Location handleChange={this.inputChange} callBack={this.brewChange}></Location>
         </div>
+        <Results breweryInfo={this.state.brewery}></Results>
       </div>
     )
-  }
+  };
 
-}
+};
 
 export default App;

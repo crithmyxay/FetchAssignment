@@ -1,25 +1,32 @@
 import React, { Component } from "react";
+import { Card, Nav, CardColumns } from "react-bootstrap";
 
 class Results extends Component {
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.breweryInfo !== prevProps.breweryInfo) {
-  //       // this.fetchData(this.props.breweryInfo);
-  //       // console.log(this.props.breweryInfo)
-  //   }
-  // };
     
-    render () {
-      if (!this.props.breweryInfo) {
-        console.log(`${this.props.breweryInfo}`)
-        return <div></div>
-      }
-      else {
-        return this.props.breweryInfo.map((pub, i) => {
-          return <div key={i}>{pub.name}</div>
-        })
-      }
-  }
+  render () {
+    if (!this.props.breweryInfo) {
+      console.log(`${this.props.breweryInfo}`)
+      return <div></div>
+    }
+    else {
+      return <CardColumns>
+        {this.props.breweryInfo.map((pub, i) => {
+          return <Card key={i} bg="dark" text="white" >
+                    <Card.Body>
+                      <Card.Title>{pub.name}</Card.Title>
+                      <Card.Text>
+                        {pub.street} <br></br> 
+                        {pub.city}, {pub.state} {pub.postal_code} <br></br> 
+                        {pub.phone} <br></br>
+                        <Nav.Link>{pub.website_url}</Nav.Link>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+          })
+        }
+      </CardColumns>
+    };
+  };
 
 };
 export default Results;
